@@ -5,7 +5,6 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: #1e3c72;
 }
 
 .container {
@@ -17,7 +16,7 @@ body {
   animation: fadeIn 1s ease-in-out;
 }
 
-.card, .task-panel {
+.card {
   background: rgba(255, 255, 255, 0.95);
   padding: 2.5rem;
   border-radius: 15px;
@@ -30,11 +29,7 @@ body {
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.task-panel {
-  max-width: 700px;
-}
-
-.card:hover, .task-panel:hover {
+.card:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
 }
@@ -73,7 +68,6 @@ body {
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: background 0.4s ease, transform 0.2s ease;
-
 }
 
 .btn:hover {
@@ -85,11 +79,45 @@ body {
   transform: scale(0.98);
 }
 
-.btn-small {
+.btn-update {
   padding: 0.5rem 1rem;
+  background: linear-gradient(90deg, #2ecc71, #27ae60);
+  color: white;
+  border: none;
+  border-radius: 8px;
   font-size: 0.9rem;
-  width: auto;
-  margin-left: 0.5rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: background 0.4s ease, transform 0.2s ease;
+}
+
+.btn-update:hover {
+  background: linear-gradient(90deg, #27ae60, #219653);
+  transform: translateY(-2px);
+}
+
+.btn-update:active {
+  transform: scale(0.98);
+}
+
+.btn-delete {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(90deg, #e74c3c, #c0392b);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.4s ease, transform 0.2s ease;
+}
+
+.btn-delete:hover {
+  background: linear-gradient(90deg, #c0392b, #a93226);
+  transform: translateY(-2px);
+}
+
+.btn-delete:active {
+  transform: scale(0.98);
 }
 
 .error {
@@ -109,6 +137,18 @@ body {
 .link:hover {
   color: #357abd;
   text-decoration: underline;
+}
+
+.task-list {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  max-width: 700px;
+  margin: 20px auto;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .task-item {
@@ -133,27 +173,23 @@ body {
   opacity: 0.8;
 }
 
- h3 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color:black; 
-}
-h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color:black;         /* contrast with blue bg */
-  font-size: 2rem;     /* bigger */
-  font-weight: 700;    /* bold */
-  letter-spacing: 1px; /* nice spacing */
-}
-.container h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
-  font-weight: 700;
-  color:black;
+.task-form {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2rem;
+  max-width: 700px;
+  margin: 20px auto;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+h2, h3 {
+  color: #1e3c72;
+  text-align: center;
+}
 
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -167,7 +203,7 @@ h2 {
 }
 
 @media (max-width: 600px) {
-  .card, .task-panel {
+  .card, .task-list, .task-form {
     max-width: 90%;
     padding: 1.5rem;
   }
@@ -185,9 +221,8 @@ h2 {
     margin-top: 0.5rem;
   }
 
-  .btn-small {
-    margin-left: 0;
-    margin-top: 0.5rem;
+  .btn-update, .btn-delete {
     width: 100%;
+    margin-top: 0.5rem;
   }
 }

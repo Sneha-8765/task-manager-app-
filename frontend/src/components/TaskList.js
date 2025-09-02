@@ -48,40 +48,48 @@ const TaskList = () => {
       console.error('Error deleting task:', err);
     }
   };
-  
+
+  const updateTask = async (id) => {
+    // Placeholder: Navigate to an update form or edit inline
+    const newTitle = prompt('Enter new task title:', tasks.find(task => task._id === id).title);
+    if (newTitle) {
+      try {
+        await api.put(`/api/tasks/${id}`, { title: newTitle }, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setTasks(tasks.map(task => task._id === id ? { ...task, title: newTitle } : task));
+      } catch (err) {
+        console.error('Error updating task:', err);
+      }
+    }
+  };
 
   if (!token) return null;
-    
+
   return (
-     
-
-  <div className="container">
-  
-  
-
-  <TaskForm onTaskAdded={(newTask) => setTasks([...tasks, newTask])} />
-
-  <div className="task-list">
-    <ul className="space-y-2">
-      {tasks.map(task => (
-        <li key={task._id} className={`task-item ${task.status === 'completed' ? 'completed' : ''}`}>
-          <span>{task.title}</span>
-          <div>
-            <input
-              type="checkbox"
-              checked={task.status === 'completed'}
-              onChange={() => toggleStatus(task._id)}
-              className="mr-2"
-            />
-            <button onClick={() => deleteTask(task._id)} className="text-red-600">Delete</button>
-          </div>
-        </li>
-      ))}
-    </ul>
-  </div>
-</div>
-
-
+    <div className="container">
+      <TaskForm onTaskAdded={(newTask) => setTasks([...tasks, newTask])} />
+      <div className="task-list">
+        <h2 className="text-center text-2xl font-bold mb-4">Task Manager</h2>
+        <ul className="space-y-2">
+          {tasks.map(task => (
+            <li key={task._id} className={`task-item ${task.status === 'completed' ? 'completed' : ''}`}>
+              <span>{task.title}</span>
+              <div>
+                <input
+                  type="checkbox"
+                  checked={task.status === 'completed'}
+                  onChange={() => toggleStatus(task._id)}
+                  className="mr-2"
+                />
+                <button onClick={() => updateTask(task._id)} className="btn-update">Update</button>
+                <button onClick={() => deleteTask(task._id)} className="btn-delete">Delete</button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 };
 

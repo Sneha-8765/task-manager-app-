@@ -22,8 +22,7 @@ const TaskForm = ({ onTaskAdded }) => {
   };
 
   return (
-    <div className="task-form">
-    <h2 className="text-center text-3xl font-bold mb-8">Task Manager</h2>
+    <div className="card">
       <h3 className="text-center text-xl font-bold mb-4">Add New Task</h3>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="form-group">
